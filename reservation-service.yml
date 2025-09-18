@@ -1,0 +1,23 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: reservation-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5435/resdb}
+    username: ${SPRING_DATASOURCE_USERNAME:res}
+    password: ${SPRING_DATASOURCE_PASSWORD:pass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+feign:
+  httpclient:
+    enabled: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
