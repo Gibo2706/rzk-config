@@ -1,0 +1,25 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/userdb}
+    username: ${SPRING_DATASOURCE_USERNAME:user}
+    password: ${SPRING_DATASOURCE_PASSWORD:pass}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  main:
+    allow-bean-definition-overriding: true
+jwt:
+  secret: ${JWT_SECRET:55xUXikvstY+VwbmpFD/wkGqE9KZzQ3O2nDop/0fkPXkKlT00Pbfi/XM0fA4AAqp}
+  expirationMs: 86400000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
