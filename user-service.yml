@@ -16,7 +16,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 jwt:
-  secret: ${JWT_SECRET:dev_jwt_secret_change_me}
+  secret: ${JWT_SECRET:55xUXikvstY+VwbmpFD/wkGqE9KZzQ3O2nDop/0fkPXkKlT00Pbfi/XM0fA4AAqp}
   expirationMs: 86400000
 management:
   endpoints:
