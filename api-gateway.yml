@@ -1,7 +1,39 @@
-routes:
-  - id: user-service
-    uri: lb://user-service
-    predicates:
-      - Path=/api/users/**
-    filters:
-      - StripPrefix=0
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      routes:
+        - id: user-service
+          uri: lb://user-service
+          predicates: [ Path=/api/users/** ]
+          filters: [ StripPrefix=1 ]
+        - id: trip-service
+          uri: lb://trip-service
+          predicates: [ Path=/api/trips/** ]
+        - id: reservation-service
+          uri: lb://reservation-service
+          predicates: [ Path=/api/reservations/** ]
+      discovery:
+        locator:
+          enabled: true
+  main:
+    web-application-type: reactive
+jwt:
+  secret: ${JWT_SECRET:55xUXikvstY+VwbmpFD/wkGqE9KZzQ3O2nDop/0fkPXkKlT00Pbfi/XM0fA4AAqp}
+  expirationMs: 86400000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: DEBUG
+    com.example.gateway: DEBUG
