@@ -10,14 +10,18 @@ spring:
       routes:
         - id: user-service
           uri: lb://user-service
-          predicates: [ Path=/api/users/** ]
-          filters: [ StripPrefix=0 ]
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
         - id: trip-service
           uri: lb://trip-service
-          predicates: [ Path=/api/trips/** ]
+          predicates:
+            - Path=/api/trips/**
         - id: reservation-service
           uri: lb://reservation-service
-          predicates: [ Path=/api/reservations/** ]
+          predicates:
+            - Path=/api/reservations/**
       discovery:
         locator:
           enabled: true
