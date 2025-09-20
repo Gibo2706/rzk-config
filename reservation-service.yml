@@ -16,6 +16,9 @@ spring:
 feign:
   httpclient:
     enabled: true
+jwt:
+  secret: ${JWT_SECRET:change-me-in-docker-compose}
+
 management:
   endpoints:
     web:
