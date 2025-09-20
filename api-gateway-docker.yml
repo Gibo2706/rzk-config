@@ -46,5 +46,11 @@ management:
 
 logging:
   level:
-    org.springframework.cloud.gateway: DEBUG
-    org.springframework.cloud.loadbalancer: DEBUG
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.http: DEBUG
+    org.springframework.security: TRACE
+    org.springframework.cloud.gateway: TRACE
+    reactor.netty.http.client: DEBUG
+    reactor.netty.http.server: DEBUG
+work.cloud.loadbalancer: DEBUG
